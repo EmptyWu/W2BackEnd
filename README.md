@@ -7,11 +7,15 @@
 > https://infinite-wave-68225.herokuapp.com/ 
 
 ## GET 所有資料
-> https://infinite-wave-68225.herokuapp.com/PostList
+> https://infinite-wave-68225.herokuapp.com/posts
 
+## GET 單筆資料
+> https://infinite-wave-68225.herokuapp.com/post/:id
 ## POST 新增資料
-> https://infinite-wave-68225.herokuapp.com/PostList
+> https://infinite-wave-68225.herokuapp.com/post
 
+## DELETE 刪除單筆資料
+> https://infinite-wave-68225.herokuapp.com/post/:id
 ## Mongoose Schema
 ```javascript
 const PostSchema = new mongoose.Schema(
@@ -20,12 +24,12 @@ const PostSchema = new mongoose.Schema(
             type: String,
             required: [true, "userName必填"],
         },
-        userContent: {
-            type: String,
-            required: [true, "userContent必填"],
-        },
         userPhoto: String,
-        imgUrl: String,       
+        postContent: {
+            type: String,
+            required: [true, "postContent必填"],
+        },
+        postImgUrl: String,       
     },
     { 
         versionKey:false,
