@@ -6,12 +6,12 @@ const PostSchema = new mongoose.Schema(
             type: String,
             required: [true, "userName必填"],
         },
-        userContent: {
-            type: String,
-            required: [true, "userContent必填"],
-        },
         userPhoto: String,
-        imgUrl: String,       
+        postContent: {
+            type: String,
+            required: [true, "postContent必填"],
+        },
+        postImgUrl: String,  
     },
     { 
         versionKey:false,
