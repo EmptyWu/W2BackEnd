@@ -1,4 +1,6 @@
 const http = require('http');
+var url = require('url');
+var util = require('util');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const Post = require('./model/postmodel');
@@ -25,10 +27,11 @@ const requestListener = async (req, res) => {
   req.on('data', (chunk) => {
     body += chunk;
   });
-
+console.log(req.url);
   if (req.url === '/posts') {
+    //多筆資料
     switch (req.method) {
-      case 'GET':
+      case 'GET':        
         const data = await Post.find();
         res.writeHead(200, headers);
         res.write(
@@ -40,7 +43,27 @@ const requestListener = async (req, res) => {
         res.end();
         break;
     }
+  } else if(req.url.startsWith('/posts')){
+    switch (req.method) {
+      case 'GET':
+        const q=url.parse(req.url,true).query;
+        //起
+        const startrow=(q.page * 1)-1;
+        //迄
+        const endrow =(q.page *10) -1;       
+        const data = await Post.find().skip(startrow).limit(endrow);
+        res.writeHead(200, headers);
+        res.write(
+          JSON.stringify({
+            result: true,
+            data,
+          }),
+        );
+        res.end();
+        break;
+    }
   } else if (req.url === '/post') {
+    //新增資料
     switch (req.method) {
       case 'POST':
         req.on('end', async () => {
@@ -69,6 +92,7 @@ const requestListener = async (req, res) => {
         break;
     }
   } else if (req.url.startsWith('/post/')) {
+    //單筆資料
     const id = req.url.split('/').pop();
     switch (req.method) {
       case 'GET':
