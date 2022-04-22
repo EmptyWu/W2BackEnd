@@ -47,16 +47,23 @@ console.log(req.url);
     switch (req.method) {
       case 'GET':
         const q=url.parse(req.url,true).query;
-        //起
-        const startrow=(q.page -1)*10;
-        //迄
-        const endrow =(q.page *10) -1;       
-        const data = await Post.find().skip(startrow).limit(endrow);
+        const startrow=(q.page -1)*10; // 起
+        const limit = 10;
+        const number = await Post.find().count(); //計算總量
+        const totalPages = Math.ceil(number / limit); // 總共幾頁
+        const data = await Post.find().skip(startrow).limit(limit);
         res.writeHead(200, headers);
         res.write(
           JSON.stringify({
             result: true,
             data,
+            pagination: {
+              total_pages: totalPages,
+              current_page: Number(q) ,
+              has_pre: q > 1 ? true : false,
+              has_next: q < totalPages ? true : false,
+            },
+            message: '成功取得當頁資料',
           }),
         );
         res.end();
