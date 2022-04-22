@@ -48,7 +48,7 @@ console.log(req.url);
       case 'GET':
         const q=url.parse(req.url,true).query;
         //起
-        const startrow=(q.page * 1)-1;
+        const startrow=(q.page -1)*10;
         //迄
         const endrow =(q.page *10) -1;       
         const data = await Post.find().skip(startrow).limit(endrow);
