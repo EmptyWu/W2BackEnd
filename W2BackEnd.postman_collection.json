@@ -1,0 +1,130 @@
+{
+	"info": {
+		"_postman_id": "34394b99-1d3b-43a0-b642-4c91cc791fc1",
+		"name": "W2BackEnd",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "取得多筆資料",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://stormy-anchorage-06474.herokuapp.com/posts",
+					"protocol": "https",
+					"host": [
+						"stormy-anchorage-06474",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "新增一筆資料",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"test\",\r\n    \"tags\":\"1\",\r\n    \"type\":\"group\",\r\n    \"content\":\"測試\",\r\n    \"image\":\"\",\r\n    \"likes\":\"0\",\r\n    \"comments\":\"0\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://stormy-anchorage-06474.herokuapp.com/post",
+					"protocol": "https",
+					"host": [
+						"stormy-anchorage-06474",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"post"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "刪除特定Post",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://stormy-anchorage-06474.herokuapp.com/post/627299c45a719f4e68d1ed9a",
+					"protocol": "https",
+					"host": [
+						"stormy-anchorage-06474",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"post",
+						"627299c45a719f4e68d1ed9a"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "取得單筆Post",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://stormy-anchorage-06474.herokuapp.com/post/627299d65a719f4e68d1ed9f",
+					"protocol": "https",
+					"host": [
+						"stormy-anchorage-06474",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"post",
+						"627299d65a719f4e68d1ed9f"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "編輯單筆貼文",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"test\",\r\n    \"tags\":\"1\",\r\n    \"type\":\"group\",\r\n    \"content\":\"測試2\",\r\n    \"image\":\"\",\r\n    \"likes\":\"0\",\r\n    \"comments\":\"0\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://stormy-anchorage-06474.herokuapp.com/post/627299d65a719f4e68d1ed9f",
+					"protocol": "https",
+					"host": [
+						"stormy-anchorage-06474",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"post",
+						"627299d65a719f4e68d1ed9f"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
