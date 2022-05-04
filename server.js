@@ -97,6 +97,7 @@ console.log(req.url);
           }
         });
         break;
+      
     }
   } else if (req.url.startsWith('/post/')) {
     //單筆資料
@@ -134,6 +135,39 @@ console.log(req.url);
           res.end();
         }
         break;
+        case 'PATCH':
+          req.on('end', async () => {
+            try {
+              const id = req.url.split('/').pop();              
+              const PostData = JSON.parse(body);
+              if (id !== -1 && PostData.content) {
+              }
+               await Post.updateOne({"_id":id},PostData);
+               const data =await Post.find(
+                {
+                  "_id": id
+                },
+              );
+              res.writeHead(200, headers);
+              res.write(
+                JSON.stringify({
+                  result: true,
+                  data,
+                }),
+              );
+              res.end();
+            } catch (err) {
+              res.writeHead(400, headers);
+              res.write(
+                JSON.stringify({
+                  result: false,
+                  err,
+                }),
+              );
+              res.end();
+            }
+          });
+          break;
     }
   }
 };
